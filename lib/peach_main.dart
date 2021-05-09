@@ -6,10 +6,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePage());
   }
 }
 
@@ -24,26 +21,21 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      value: 0.0,
-      duration: Duration(seconds: 25),
-      upperBound: 1,
-      lowerBound: -1,
-      vsync: this,
-    )..repeat();
+    _controller =
+        AnimationController(value: 0.0, duration: Duration(seconds: 25), upperBound: 1, lowerBound: -1, vsync: this)
+          ..repeat();
   }
 
   @override
   void dispose() {
     _controller.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    // if (_controller.value == 0.8) _controller.reverse();
+    if (_controller.value == 0.8) _controller.reverse();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -61,9 +53,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                       height: size.height * 0.5,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            colors: [Color(0xFFE0647B), Color(0xFFFCDD89)]),
+                          begin: Alignment.bottomLeft,
+                          end: Alignment.topRight,
+                          colors: [Color(0xFFE0647B), Color(0xFFFCDD89)],
+                        ),
                       ),
                     ),
                   );

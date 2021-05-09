@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(MyAniApp());
+
+class MyAniApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePageCustomClipper());
+  }
+}
+
 class MyHomePageCustomClipper extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePageCustomClipper> with SingleTickerProviderStateMixin {
-  final Image starsBackground = Image.asset('assets/images/milky-way-6209352_1920.jpg');
-  final Image ufo = Image.asset('assets/images/ufo-42453_1280.png');
+  final Image starsBackground = Image.asset('assets/images/milky-way-6209352_1920.jpg', fit: BoxFit.fill);
+  final Image ufo = Image.asset('assets/images/ufo-42453_1280.png', scale: 10.0);
   late AnimationController _animation;
 
   @override
   void initState() {
     super.initState();
-    _animation = AnimationController(
-      duration: const Duration(seconds: 5),
-      vsync: this,
-    )..repeat();
+    _animation = AnimationController(duration: const Duration(seconds: 5), vsync: this)..repeat();
   }
 
   @override
@@ -24,7 +30,10 @@ class _MyHomePageState extends State<MyHomePageCustomClipper> with SingleTickerP
     return Stack(
       alignment: AlignmentDirectional.center,
       children: <Widget>[
-        starsBackground,
+        Container(
+          constraints: BoxConstraints.expand(),
+          child: starsBackground,
+        ),
         AnimatedBuilder(
           animation: _animation,
           builder: (_, __) {

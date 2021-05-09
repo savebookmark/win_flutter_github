@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(MyAnimatedApp());
+
+class MyAnimatedApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePageAnimatedWidget());
+  }
+}
+
 class MyHomePageAnimatedWidget extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePageAnimatedWidget> with SingleTickerProviderStateMixin {
-  final Image starsBackground = Image.asset('assets/images/milky-way-6209352_1920.jpg');
-  final Image ufo = Image.asset('assets/images/ufo-42453_1280.png');
+  final Image starsBackground = Image.asset('assets/images/milky-way-6209352_1920.jpg', fit: BoxFit.fitHeight);
+  final Image ufo = Image.asset('assets/images/ufo-42453_1280.png', scale: 10);
   late AnimationController _animation;
 
   @override
   void initState() {
     super.initState();
-    _animation = AnimationController(duration: const Duration(seconds: 5), vsync: this)..repeat();
+    _animation = AnimationController(duration: const Duration(seconds: 2), vsync: this)..repeat();
   }
 
   @override
@@ -21,7 +30,7 @@ class _MyHomePageState extends State<MyHomePageAnimatedWidget> with SingleTicker
     return Stack(
       alignment: AlignmentDirectional.center,
       children: <Widget>[
-        starsBackground,
+        Container(constraints: BoxConstraints.expand(), child: starsBackground),
         BeamTransition(animation: _animation),
         ufo,
       ],
@@ -39,7 +48,7 @@ class BeamTransition extends AnimatedWidget {
   BeamTransition({Key? key, required Animation<double> animation}) : super(key: key, listenable: animation);
   @override
   Widget build(BuildContext context) {
-    // final animation = listenable;
+    final animation = listenable as Animation<double>;
     return ClipPath(
       clipper: const BeamClipper(),
       child: Container(
@@ -47,9 +56,11 @@ class BeamTransition extends AnimatedWidget {
         decoration: BoxDecoration(
           gradient: RadialGradient(
             radius: 1.5,
-            colors: [Colors.yellow, Colors.transparent],
-            stops: [0.0, 1.0],
-            // stops: [0.0, animation.value],
+            colors: [
+              Colors.yellow,
+              Colors.transparent,
+            ],
+            stops: [0, animation.value],
           ),
         ),
       ),

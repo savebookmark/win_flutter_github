@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyClipperApp());
 
-class MyApp extends StatelessWidget {
+class MyClipperApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      body: MyHomePage(),
-    ));
+    return MaterialApp(home: Scaffold(body: MyHomePage()));
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  final Image starsBackground = Image.asset('assets/milky-way.jpg');
-  final Image ufo = Image.asset('assets/ufo.png');
+  final Image starsBackground = Image.asset('assets/images/milky-way-6209352_1920.jpg', fit: BoxFit.fill);
+  final Image ufo = Image.asset('assets/images/ufo-42453_1280.png', scale: 10.0);
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: <Widget>[
-        starsBackground,
+        Container(
+          constraints: BoxConstraints.expand(),
+          child: starsBackground,
+        ),
         ClipPath(
           clipper: const BeamClipper(),
           child: Container(
