@@ -22,18 +22,20 @@ class _MyHomePageState extends State<MyHomePageAnimatedWidget> with SingleTicker
   @override
   void initState() {
     super.initState();
-    _animation = AnimationController(duration: const Duration(seconds: 2), vsync: this)..repeat();
+    _animation = AnimationController(duration: const Duration(seconds: 4), vsync: this)..repeat();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: <Widget>[
-        Container(constraints: BoxConstraints.expand(), child: starsBackground),
-        BeamTransition(animation: _animation),
-        ufo,
-      ],
+    return SafeArea(
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: <Widget>[
+          Container(constraints: BoxConstraints.expand(), child: starsBackground),
+          BeamTransition(animation: _animation),
+          ufo,
+        ],
+      ),
     );
   }
 
