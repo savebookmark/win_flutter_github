@@ -76,10 +76,10 @@ class BeamClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     return Path()
-      ..lineTo(size.width / 2, size.height / 2)
-      ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height)
-      ..lineTo(size.width / 2, size.height / 2)
+      ..lineTo(size.width / 2, size.height / 2) //중앙
+      ..lineTo(size.width - 50, size.height - 50) //오른쪽 하단
+      ..lineTo(0, size.height) //왼쪽 하단
+      ..lineTo(size.width / 2, size.height / 2) //중앙
       ..close();
   }
 
