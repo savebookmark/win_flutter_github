@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+//github 사용
 void main() => runApp(MyAniApp());
 
 class MyAniApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePageCustomClipper());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyHomePageCustomClipper(),
+    );
   }
 }
 
