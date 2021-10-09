@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 //github 사용
+//
 void main() => runApp(MyAniApp());
 
 class MyAniApp extends StatelessWidget {
